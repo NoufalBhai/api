@@ -1,0 +1,310 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Root",
+		"version": "1.0"
+	},
+	"servers": [
+		{
+			"url": "http://serverip/api/v1"
+		}
+	],
+	"paths": {
+		"/dash-board/": {
+			"post": {
+				"summary": "Dash Board",
+				"tags": [],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"banner": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"banner_id": {
+														"type": "integer"
+													},
+													"banner_name": {
+														"type": "string"
+													},
+													"banner_desc": {
+														"type": "string"
+													},
+													"banner_image": {
+														"type": "string"
+													}
+												}
+											}
+										},
+										"palliative_care": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"pcomp_id": {
+														"type": "integer"
+													},
+													"pcomp_name": {
+														"type": "string"
+													},
+													"pcomp_desc": {
+														"type": "string"
+													},
+													"pcomp_lat": {
+														"type": "string"
+													},
+													"pcomp_lng": {
+														"type": "string"
+													},
+													"pcomp_district": {
+														"type": "string"
+													},
+													"pcomp_image": {
+														"type": "string"
+													},
+													"distance": {
+														"type": "number"
+													}
+												}
+											}
+										},
+										"shops": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"shop_id": {
+														"type": "integer"
+													},
+													"shop_name": {
+														"type": "string"
+													},
+													"shop_district": {
+														"type": "string"
+													},
+													"shop_category": {
+														"type": "string"
+													},
+													"shop_lat": {
+														"type": "string"
+													},
+													"shop_lng": {
+														"type": "string"
+													},
+													"distance": {
+														"type": "number"
+													}
+												}
+											}
+										}
+									}
+								},
+								"examples": {
+									"example-1": {
+										"value": {
+											"banner": [
+												{
+													"banner_id": 2,
+													"banner_name": "Banner 2",
+													"banner_desc": "Banner Desc",
+													"banner_image": "http://localhost:8000/media/banner/2ade4dec-5a45-46af-8a1f-86008798725d.jpg"
+												},
+												{
+													"banner_id": 1,
+													"banner_name": "Banner 1",
+													"banner_desc": "Banner Desc",
+													"banner_image": "http://localhost:8000/media/banner/093e072d-3adc-4df7-bbc8-719f478e80ad.jpg"
+												}
+											],
+											"palliative_care": [
+												{
+													"pcomp_id": 1,
+													"pcomp_name": "Comp",
+													"pcomp_desc": "ioiugiu",
+													"pcomp_lat": "0.0000000",
+													"pcomp_lng": "0.0000000",
+													"pcomp_district": "ugg",
+													"pcomp_image": null,
+													"distance": 5524.4493476552725
+												}
+											],
+											"shops": [
+												{
+													"shop_id": 1,
+													"shop_name": "Shop 1",
+													"shop_district": "Kollam",
+													"shop_category": "Shop",
+													"shop_lat": "7.8956000",
+													"shop_lng": "78.2125400",
+													"distance": 112.38396840299892
+												}
+											]
+										}
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"user_lat": {
+											"type": "string"
+										},
+										"user_lng": {
+											"type": "string"
+										}
+									}
+								},
+								"examples": {
+									"example-1": {
+										"value": {
+											"user_lat": "required field",
+											"user_lng": "required field"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"operationId": "post-dash-board",
+				"description": "Getting Dash Board",
+				"parameters": [],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"user_lat": {
+										"type": "number"
+									},
+									"user_lng": {
+										"type": "number"
+									}
+								},
+								"required": [
+									"user_lat",
+									"user_lng"
+								]
+							}
+						}
+					},
+					"description": ""
+				}
+			}
+		},
+		"/search-shop/": {
+			"get": {
+				"summary": "Search Shop",
+				"tags": [],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"shop_id": {
+												"type": "integer"
+											},
+											"shop_name": {
+												"type": "string"
+											},
+											"shop_district": {
+												"type": "string"
+											},
+											"shop_category": {
+												"type": "string"
+											},
+											"shop_lat": {
+												"type": "string"
+											},
+											"shop_lng": {
+												"type": "string"
+											}
+										}
+									}
+								},
+								"examples": {
+									"example-1": {
+										"value": [
+											{
+												"shop_id": 1,
+												"shop_name": "Shop 1",
+												"shop_district": "Kollam",
+												"shop_category": "Shop",
+												"shop_lat": "7.8956000",
+												"shop_lng": "78.2125400"
+											}
+										]
+									}
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"400": {
+						"description": "Bad Request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"detail": {
+											"type": "string"
+										}
+									}
+								},
+								"examples": {
+									"example-1": {
+										"value": {
+											"detail": "No Search Params Found"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"operationId": "get-search-shop",
+				"description": "Search Shops By Name or By District",
+				"parameters": [
+					{
+						"schema": {
+							"type": "string"
+						},
+						"in": "query",
+						"name": "shop_name"
+					},
+					{
+						"schema": {
+							"type": "string"
+						},
+						"in": "query",
+						"name": "shop_district"
+					}
+				]
+			}
+		}
+	},
+	"components": {
+		"schemas": {}
+	}
+}
